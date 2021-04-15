@@ -6,7 +6,7 @@ const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
 
 
-
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb+srv://AnthonyLfb:kDwpCtT_tGv!v5w@oc-p6.h4zpy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 { useNewUrlParser: true,
   useUnifiedTopology: true })
