@@ -13,7 +13,8 @@ mongoose.connect('mongodb+srv://AnthonyLfb:kDwpCtT_tGv!v5w@oc-p6.h4zpy.mongodb.n
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
   
-  const app = express();
+const app = express();
+
 app.use(bodyParser.json());
 
 app.use('/api/stuff', stuffRoutes);
