@@ -72,17 +72,17 @@ exports.likeSauce = (req, res, next) => {
         .then(
             (sauce) => {
                 if (req.body.like === 0) {
-                    if (sauce.usersliked.find(userId => userId === req.body.userId)) {
-                        sauce.updateOne({ _id: req.params.id }, {
+                    if (sauce.usersLiked.find(userId => userId === req.body.userId)) {
+                        Sauce.updateOne({ _id: req.params.id }, {
                             $inc: { likes: -1 },
-                            $pull: { usersliked: req.body.userId },
+                            $pull: { usersLiked: req.body.userId },
                             _id: req.params.id
                         })
                             .then(() => res.status(200).json({ message: 'Objet modifié 1!' }))
                             .catch(error => res.status(400).json({ error }));
 
                     } else if (sauce.usersDisliked.find(userId => userId === req.body.userId)) {
-                        sauce.updateOne({ _id: req.params.id }, {
+                        Sauce.updateOne({ _id: req.params.id }, {
                             $inc: { dislikes: -1 },
                             $pull: { usersDisliked: req.body.userId },
                             _id: req.params.id
@@ -91,7 +91,7 @@ exports.likeSauce = (req, res, next) => {
                             .catch(error => res.status(400).json({ error }));
                     }
                 } else if (req.body.like === 1) {
-                    sauce.updateOne({ _id: req.params.id }, {
+                    Sauce.updateOne({ _id: req.params.id }, {
                         $inc: { likes: 1 },
                         $push: { usersLiked: req.body.userId },
                         _id: req.params.id
@@ -99,7 +99,7 @@ exports.likeSauce = (req, res, next) => {
                         .then(() => res.status(200).json({ message: 'Objet modifié 3!' }))
                         .catch(error => res.status(400).json({ error }));
                 } else if (req.body.like === -1) {
-                    sauce.updateOne({ _id: req.params.id }, {
+                    Sauce.updateOne({ _id: req.params.id }, {
                         $inc: { disLikes: 1 },
                         $push: { usersDisliked: req.body.userId },
                         _id: req.params.id

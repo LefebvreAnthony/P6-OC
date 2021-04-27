@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -8,13 +8,16 @@ const userRoutes = require('./routes/user');
 const path = require('path');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb+srv://AnthonyLfb:kDwpCtT_tGv!v5w@oc-p6.h4zpy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGODB_URL,
 { useNewUrlParser: true,
   useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
   
 const app = express();
+const helmet = require('helmet');
+
+app.use(helmet());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
