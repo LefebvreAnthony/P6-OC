@@ -8,6 +8,8 @@ const userRoutes = require('./routes/user');
 const path = require('path');
 
 mongoose.set('useCreateIndex', true);
+
+//Connsection au serveur
 mongoose.connect(process.env.MONGODB_URL,
 { useNewUrlParser: true,
   useUnifiedTopology: true })
@@ -17,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URL,
 const app = express();
 const helmet = require('helmet');
 
+// Sécurité
 app.use(helmet());
 
 app.use((req, res, next) => {

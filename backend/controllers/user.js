@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User')
 
 
-
+// hash un mdp à la création d'un utilisateur
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {

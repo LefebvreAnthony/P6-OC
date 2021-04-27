@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Schema pour ajouter un article Sauce
 const sauceSchema = mongoose.Schema({
     userId: {type: String, required: true},
     name: { type: String, required: true},
