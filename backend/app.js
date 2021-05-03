@@ -18,9 +18,16 @@ mongoose.connect(process.env.MONGODB_URL,
   
 const app = express();
 const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+    windowMs: 25 * 60 * 1000,
+    max: 100
+});
 
 // Sécurité
+app.use(limiter);
 app.use(helmet());
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
